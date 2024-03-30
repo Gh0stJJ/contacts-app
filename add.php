@@ -1,3 +1,29 @@
+
+<?php
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST["name"];
+    $phone_number = $_POST["phone_number"];
+    $contact = ["name" => $name, "phone" => $phone_number];
+    
+    if (file_exists("contacts.json")) { // Check if the file exists
+      $contacts = json_decode(file_get_contents("contacts.json"), true); // Get the contacts from the file
+    } else {
+      $contacts = []; // If the file doesn't exist, create an empty array
+    }
+
+    $contacts[] = $contact; // Add the new contact to the contacts array
+
+    file_put_contents("contacts.json", json_encode($contacts)); // Save the contacts array to the file
+
+    header("Location: /contacts-app/index.php"); // Redirect to the index page
+
+
+  }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -39,10 +65,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="./index.html">Home</a>
+              <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/contacts-app/add.html">Add Contact</a>
+              <a class="nav-link" href="add.php">Add Contact</a>
             </li>
           </ul>
         </div>
@@ -56,7 +82,7 @@
           <div class="card">
             <div class="card-header">Add New Contact</div>
             <div class="card-body">
-              <form>
+              <form method="post" action="add.php">
                 <div class="mb-3 row">
                   <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
     
