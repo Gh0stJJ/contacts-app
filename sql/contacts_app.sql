@@ -5,3 +5,7 @@ CREATE TABLE contacts (
 );
 
 DESCRIBE contacts;
+
+INSERT INTO contacts (name, phone_number) VALUES ('Juanja', '555-1234');
+INSERT INTO contacts (name, phone_number) VALUES ('Bob', '5553424');
+INSERT INTO contacts (name, phone_number) VALUES ('Dogo', '555-9876');

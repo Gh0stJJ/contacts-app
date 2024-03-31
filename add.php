@@ -1,23 +1,15 @@
 
 <?php
-
+  require_once 'database.php';
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST["name"];
-    $phone_number = $_POST["phone_number"];
+    $phoneNumber = $_POST["phone_number"];
     $contact = ["name" => $name, "phone" => $phone_number];
     
-    if (file_exists("contacts.json")) { // Check if the file exists
-      $contacts = json_decode(file_get_contents("contacts.json"), true); // Get the contacts from the file
-    } else {
-      $contacts = []; // If the file doesn't exist, create an empty array
-    }
-
-    $contacts[] = $contact; // Add the new contact to the contacts array
-
-    file_put_contents("contacts.json", json_encode($contacts)); // Save the contacts array to the file
-
+    $statement = $connection->prepare("INSERT INTO contacts (name, phone_number) VALUES ('$name', '$phoneNumber')");
+    $statement->execute();  // Execute the statement
+    
     header("Location: /contacts-app/index.php"); // Redirect to the index page
-
 
   }
 
