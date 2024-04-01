@@ -13,8 +13,6 @@
     die('HTTP 404 Contact not found');
   }
 
-
-
   // Prepare the SQL statement
 
   $statement = $connection->prepare('DELETE FROM contacts WHERE id = :id');
