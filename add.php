@@ -21,7 +21,7 @@
       $statement->bindParam(":phone_number", $phoneNumber);
       $statement->execute();  // Execute the statement
       
-      header("Location: /contacts-app/index.php"); // Redirect to the index page
+      header("Location: /contacts-app/home.php"); // Redirect to the index page
     }
     
 

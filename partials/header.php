@@ -16,6 +16,13 @@
   </script>
   <!-- Static content -->
   <link rel="stylesheet" href="./static/css/index.css">
+  <!-- Quitar las variables de la URL -->
+  <?php $uri = parse_url($_SERVER["REQUEST_URI"],PHP_URL_PATH); ?>
+  <?php if ($uri == "/contacts-app/index.php" || $uri == '/contacts-app/'): ?>
+    <script defer src="./static/js/welcome.js"></script>
+  <?php endif; ?> 
+    
+  
   <title>Contacts App</title> 
 </head>
 <body>

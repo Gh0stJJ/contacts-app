@@ -20,4 +20,4 @@
   $statement->bindParam(':id', $id);
   $statement->execute();
 
-  header('Location: /contacts-app/index.php');
+  header('Location: /contacts-app/home.php');
