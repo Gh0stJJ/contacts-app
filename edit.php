@@ -2,6 +2,7 @@
 
   require "database.php";
   // Check if the user is logged in
+  session_start();
   if (!isset($_SESSION['user'])){
     header('Location: login.php');
     return;

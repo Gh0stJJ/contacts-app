@@ -2,6 +2,7 @@
 <?php
   require_once 'database.php';
   // Check if the user is logged in
+  session_start();
   if (!isset($_SESSION['user'])){
     header('Location: login.php');
     return;
@@ -20,7 +21,7 @@
       $phoneNumber = $_POST["phone_number"];
       $contact = ["name" => $name, "phone" => $phone_number];
       
-      $statement = $connection->prepare("INSERT INTO contacts (name, phone_number) VALUES (:name, :phone_number)");
+      $statement = $connection->prepare("INSERT INTO contacts (name, phone_number, user_id) VALUES (:name, :phone_number, {$_SESSION['user']['id']})");
       $statement->bindParam(":name", $name); // Avoid SQL injection
       $statement->bindParam(":phone_number", $phoneNumber);
       $statement->execute();  // Execute the statement

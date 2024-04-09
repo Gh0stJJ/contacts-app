@@ -6,7 +6,8 @@
     header('Location: login.php');
     return;
   }
-  $contacts = $connection->query('SELECT * FROM contacts');
+  //Obtenemos los contactos del usuario logeado
+  $contacts = $connection->query("SELECT * FROM contacts WHERE user_id = {$_SESSION['user']['id']} ORDER BY name ASC");
   $contacts->execute();
 
 ?>

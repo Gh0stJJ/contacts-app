@@ -43,7 +43,7 @@
 
         $user = $statement->fetch(PDO::FETCH_ASSOC);
         session_start();
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = $user; //Coockie
         header("Location: /contacts-app/index.php");
       } 
     }
