@@ -34,4 +34,9 @@
   $statement->bindParam(':id', $id);
   $statement->execute();
 
+  //flash message
+  $_SESSION['flash'] = ["message" => "Contact {$_POST['name']} deleted."];
+  header("Location: /contacts-app/home.php"); // Redirect to the index page
+  return; //Cerramos ejecucion hacia abajo
+
   header('Location: /contacts-app/home.php');

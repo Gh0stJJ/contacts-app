@@ -25,8 +25,10 @@
       $statement->bindParam(":name", $name); // Avoid SQL injection
       $statement->bindParam(":phone_number", $phoneNumber);
       $statement->execute();  // Execute the statement
-      
+      //flash message
+      $_SESSION['flash'] = ["message" => "Contact {$_POST['name']} added."];
       header("Location: /contacts-app/home.php"); // Redirect to the index page
+      return;
     }
     
 

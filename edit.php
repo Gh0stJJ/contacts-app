@@ -44,6 +44,10 @@
         ":name" => $_POST["name"],
         ":phone_number" => $_POST["phone_number"],
       ]);
+      //flash message
+      $_SESSION['flash'] = ["message" => "Contact {$_POST['name']} updated."];
+      header("Location: /contacts-app/home.php"); // Redirect to the index page
+      return; //Cerramos ejecucion hacia abajo
 
       header("Location: home.php");
     }
