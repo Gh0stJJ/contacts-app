@@ -1,5 +1,11 @@
 <?php
   require_once './database.php';
+  session_start();
+
+  if (!isset($_SESSION['user'])){
+    header('Location: login.php');
+    return;
+  }
   $contacts = $connection->query('SELECT * FROM contacts');
   $contacts->execute();
 

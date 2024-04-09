@@ -1,7 +1,11 @@
 <?php
 
   require "database.php";
-
+  // Check if the user is logged in
+  if (!isset($_SESSION['user'])){
+    header('Location: login.php');
+    return;
+  }
   $id = $_GET["id"];
 
   $statement = $connection->prepare("SELECT * FROM contacts WHERE id = :id LIMIT 1");

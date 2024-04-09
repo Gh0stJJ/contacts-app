@@ -1,7 +1,11 @@
 
 <?php
   require_once 'database.php';
-
+  // Check if the user is logged in
+  if (!isset($_SESSION['user'])){
+    header('Location: login.php');
+    return;
+  }
   $error = null;
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {

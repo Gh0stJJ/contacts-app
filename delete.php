@@ -1,6 +1,11 @@
 <?php
   require_once 'database.php';
-//Diccionario de datos enviados por la URL usando GET
+  // Check if the user is logged in
+  if (!isset($_SESSION['user'])){
+    header('Location: login.php');
+    return;
+  }
+  //Diccionario de datos enviados por la URL usando GET
   $id = $_GET['id']; //Obtenemos el id del contacto a eliminar
 
   //Comprobamos que exista el id

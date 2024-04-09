@@ -1,4 +1,3 @@
-
 <?php
   
   require_once './database.php';
@@ -36,6 +35,15 @@
         $statement->bindParam(":email", $_POST["email"]);
         $statement->bindParam(":password", password_hash($_POST["password"], PASSWORD_BCRYPT));
         $statement->execute();
+
+        // Login the user after registration
+        $statement = $connection->prepare("SELECT * FROM users WHERE email = :email LIMIT 1");
+        $statement->bindParam(":email", $_POST["email"]);
+        $statement->execute();
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+        session_start();
+        $_SESSION['user'] = $user;
         header("Location: /contacts-app/index.php");
       } 
     }
