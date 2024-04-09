@@ -19,6 +19,14 @@
     die('HTTP 404 Contact not found');
   }
 
+  //Avoid deleting contacts that do not belong to the user
+  $contact = $statement->fetch(PDO::FETCH_ASSOC);
+  if ($contact['user_id'] != $_SESSION['user']['id']){
+    http_response_code(403);
+    die('HTTP 403 Forbidden');
+  }
+  
+
   // Prepare the SQL statement
 
   $statement = $connection->prepare('DELETE FROM contacts WHERE id = :id');
