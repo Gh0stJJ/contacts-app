@@ -18,7 +18,20 @@ CREATE TABLE contacts (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE addresses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    contact_id INT NOT NULL,
+    street VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    state VARCHAR(255) NOT NULL,
+    FOREIGN KEY (contact_id) REFERENCES contacts(id)
+);
+
+
+
 DESCRIBE contacts;
+
+SELECT * FROM addresses;
 
 
 

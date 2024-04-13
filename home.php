@@ -6,9 +6,10 @@
     header('Location: login.php');
     return;
   }
-  //Obtenemos los contactos del usuario logeado
+  //obtenemos los contactos del usuario logeado
   $contacts = $connection->query("SELECT * FROM contacts WHERE user_id = {$_SESSION['user']['id']} ORDER BY name ASC");
   $contacts->execute();
+
 
 ?>
 
@@ -25,11 +26,26 @@
       </div>
     <?php endif; ?>
     <?php foreach ($contacts as $contact): ?>
+      <!-- Para cada contacto obtenemos sus direcciones -->
+      <?php
+        $addresses = $connection->query("SELECT * FROM addresses WHERE contact_id = {$contact['id']}");
+        $addresses->execute();
+      ?>
       <div class="col-md-4 mb-3">
         <div class="card text-center">
           <div class="card-body">
             <h3 class="card-title text-capitalize"><?= $contact["name"]?></h3>
             <p class="m-2"><?= $contact["phone_number"]?></p>
+            <?php if ($addresses->rowCount() > 0): ?>
+              <p class="m-2">Addresses:</p>
+              <ul class="list-group">
+                <?php foreach ($addresses as $address): ?>
+                  <li class="list-group
+                  -item"><?= $address["street"]?>, <?= $address["city"]?>, <?= $address["state"]?></li>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
+            <a href="addAddress.php?id=<?= $contact["id"] ?>" class="btn btn-success mb-2">Add Address</a>
             <a href="edit.php?id=<?= $contact["id"] ?>" class="btn btn-secondary mb-2">Edit Contact</a>
             <a href="delete.php?id=<?= $contact["id"] ?>" class="btn btn-danger mb-2">Delete Contact</a>
           </div>
