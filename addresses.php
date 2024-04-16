@@ -23,7 +23,7 @@
       <div class="col-md-12">
         <div class="alert alert-warning" role="alert">
           No addresses found
-          <a href="addAddress.php" class="alert-link>"> Add a new address</a>
+          <a href="addAddress.php?id=<?=$user_id?>" class="alert-link>"> Add a new address</a>
         </div>
       </div>
     <?php endif; ?>
