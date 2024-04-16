@@ -27,6 +27,9 @@
                 <a class="nav-link" href="./add.php">Add Contact</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="./addresses.php">Addresses</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="./logout.php">Logout</a>
               </li>
             <?php else: ?>

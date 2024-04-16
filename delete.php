@@ -26,6 +26,10 @@
     die('HTTP 403 Forbidden');
   }
   
+  //Delete the address from the database
+  $statement = $connection->prepare('DELETE FROM addresses WHERE contact_id = :id');
+  $statement->bindParam(':id', $id);
+  $statement->execute();
 
   // Prepare the SQL statement
 

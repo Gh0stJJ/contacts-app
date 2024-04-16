@@ -29,9 +29,17 @@ CREATE TABLE addresses (
 
 
 
-DESCRIBE contacts;
+/* DESCRIBE contacts;
 
 SELECT * FROM addresses;
 
 
 
+--Select the addressesid for a user's contacts
+SELECT addresses.id
+FROM addresses
+JOIN contacts ON addresses.contact_id = contacts.id
+JOIN users ON contacts.user_id = users.id
+WHERE users.id = 2 AND addresses.id = 1;
+
+SELECT * FROM contacts ; */

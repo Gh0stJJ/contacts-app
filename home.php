@@ -37,7 +37,7 @@
             <h3 class="card-title text-capitalize"><?= $contact["name"]?></h3>
             <p class="m-2"><?= $contact["phone_number"]?></p>
             <?php if ($addresses->rowCount() > 0): ?>
-              <p class="m-2">Addresses:</p>
+              <p class="font-weight-bold">Addresses:</p>
               <ul class="list-group">
                 <?php foreach ($addresses as $address): ?>
                   <li class="list-group
@@ -45,9 +45,11 @@
                 <?php endforeach; ?>
               </ul>
             <?php endif; ?>
+            <a href="addresses.php?id=<?= $contact["id"] ?>" class="btn btn-success mb-2">Show Addresses</a>
             <a href="addAddress.php?id=<?= $contact["id"] ?>" class="btn btn-success mb-2">Add Address</a>
             <a href="edit.php?id=<?= $contact["id"] ?>" class="btn btn-secondary mb-2">Edit Contact</a>
             <a href="delete.php?id=<?= $contact["id"] ?>" class="btn btn-danger mb-2">Delete Contact</a>
+            
           </div>
         </div>
       </div>
